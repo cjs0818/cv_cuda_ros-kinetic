@@ -95,7 +95,7 @@ At first, install Docker to your system
   /root/work$ cd /root/work/darknet
   ```
 
-  # Change the paramater OPENCV=0 into OPENCV=1 in Makefile then compile
+  * Change the paramater OPENCV=0 into OPENCV=1 in Makefile then compile
 
   ```
   /root/work/darknet$ make clean
