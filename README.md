@@ -37,7 +37,7 @@ At first, install Docker to your system
   WORKDIR/darknet$ cd ..
   WORKDIR$ git clone git@github.com:cjs0818/cv_cuda_ros-kinetc.git
   cd cv_cuda_ros-kinetic
-  WORKDIR/yolo$ ./docker_build.sh
+  WORKDIR/cv_cuda_ros-kinetic$ ./docker_build.sh
   ```
   
 * Change DISPLAY_IP in start.sh according to your system (using ifconfig)
