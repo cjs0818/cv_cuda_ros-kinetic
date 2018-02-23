@@ -6,7 +6,6 @@ At first, install Docker to your system
   * https://www.docker.com/community-edition
 
 
-# WORKDIR
 * WORKDIR is assummed to be your working directory
 
   ```
@@ -21,7 +20,7 @@ At first, install Docker to your system
   ```
 
 
-# yolo weights
+ * Download yolo weights
 
   ```
   WORKDIR$ cd darknet
@@ -32,12 +31,12 @@ At first, install Docker to your system
   ```
 
 
-# Docker Build
+# Build Docker
 
   ```
   WORKDIR/darknet$ cd ..
-  WORKDIR$ git clone git@github.com:cjs0818/yolo.git
-  WORKDIR$ cd yolo
+  WORKDIR$ git clone git@github.com:cjs0818/cv_cuda.git
+  cd cv_cuda
   WORKDIR/yolo$ ./docker_build.sh
   ```
   
@@ -69,6 +68,10 @@ At first, install Docker to your system
 
   # Compile darknet inside Docker
   /root/work$ cd /root/work/darknet
+  
+  # Modify paramaters in Makefile according to your system
+  OPENCV=0 into OPENCV=1
+  Set or unset GPU, CUDNN, ...
 
   /root/work/darknet$ make clean
   /root/work/darknet$ make
@@ -78,34 +81,10 @@ At first, install Docker to your system
   /root/work/darknet$ ./image_voc.sh
   ```
   
-# cv_cuda
 
-* Docker Build
-  ```
-  WORKDIR$ git clone git@github.com:cjs0818/cv_cuda.git
-  cd cv_cuda
-  ```
-  
-* Execute 'start.sh' file
+# Start RoS
 
   ```
-  WORKDIR/cv_cuda$ ./start.sh
-
-  # Compile darknet inside Docker
-  /root/work$ cd /root/work/darknet
-  ```
-
-  * Change the paramater OPENCV=0 into OPENCV=1 in Makefile then compile
-
-  ```
-  /root/work/darknet$ make clean
-  /root/work/darknet$ make
-  ```
-
-  # Test darknet
-  
-  ```
-  /root/work/darknet$ chmod 755 image_voc.sh
-  /root/work/darknet$ ./image_voc.sh
+  /root/work$ roscore
   ```
 
