@@ -35,8 +35,8 @@ At first, install Docker to your system
 
   ```
   WORKDIR/darknet$ cd ..
-  WORKDIR$ git clone git@github.com:cjs0818/cv_cuda.git
-  cd cv_cuda
+  WORKDIR$ git clone git@github.com:cjs0818/cv_cuda_ros-kinetc.git
+  cd cv_cuda_ros-kinetic
   WORKDIR/yolo$ ./docker_build.sh
   ```
   
@@ -64,7 +64,7 @@ At first, install Docker to your system
 * Execute 'start.sh' file
 
   ```
-  WORKDIR/yolo$ ./start.sh
+  WORKDIR/cv_cuda_ros-kinetic$ ./start.sh
 
   # Compile darknet inside Docker
   /root/work$ cd /root/work/darknet
