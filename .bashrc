@@ -4,7 +4,7 @@ alias so="source ~/.bashrc"
 alias ll="ls -al"
 #-------------------------
 
-/root/work/cv_cuda/./inside_docker.sh
+/root/work/cv_cuda_ros-kinetic/./inside_docker.sh
 
 #-------------------------
 # CUDA

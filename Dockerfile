@@ -59,9 +59,12 @@ RUN apt-get update && apt-get install -y \
 
 #-------------------
 
-# install vim
+# install utilities
+RUN apt-get update && apt-get install -y \
+    terminator \
+    && rm -rf /var/lib/apt/lists/*
+
 #RUN apt-get update && apt-get install -y \
-#    vim \
 #    wget \
 #    x11-apps \
 #    && rm -rf /var/lib/apt/lists/*

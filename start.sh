@@ -18,29 +18,25 @@ XSOCK=/tmp/.X11-unix
 #xauth nlist :0 | sed -e 's/^..../ffff/' | xauth -f $XAUTH nmerge -
 #-------------
 
-IMAGE_ID=jschoi/cv_cuda_ros-kinetic
+# Acquire parent directory as WORKDIR
+WORKDIR=$(dirname $(pwd))
+#WORKDIR="$(dirname "$(pwd)")"
 
+IMAGE_ID=jschoi/cv_cuda_ros-kinetic
 NAME_ID=jschoi_cv_cuda_ros_kinetic
 
-#IMAGE_ID=pristine70/ros-kinetic:gazebo8 
-#IMAGE_ID=gazebo8
-#IMAGE_ID=benblumeristuary/gazebo8_with_ros
-#IMAGE_ID=kinetic-ros-base:rqt
-#IMAGE_ID=openhs/ubuntu-neidia
-
-#  nvidia-docker run -it --rm \
 
 #--------------------------------
-if [ $OS = "OSX" ]
-then
+if [ $OS = "OSX" ]; then
   DOCKER=docker
   XDISP=DISPLAY=$DISPLAY_IP:0  # for OSX
-  WORKDIR=/Users/jschoi/work/Yolo
+  #WORKDIR=/Users/jschoi/work/Yolo
 else
   DOCKER=nvidia-docker  
   XDISP="DISPLAY"             # for Linux
-  WORKDIR=/home/jschoi/work/Yolo
+  #WORKDIR=/home/jschoi/work/Yolo
 fi
+
 
 #    --env "DISPLAY" \
 #    --env DISPLAY=$DISPLAY_IP:0 \
