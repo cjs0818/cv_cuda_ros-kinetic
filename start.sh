@@ -5,17 +5,25 @@
 OS=OSX
 #OS=Linux
 
-
 EN0=en0
 #EN0=enp0s5
 #EN0=enp0s31f6
 
+COMMAND=/bin/bash
 
 #-------------
 DISPLAY_IP=$(ifconfig $EN0 | grep inet | awk '$1=="inet" {print $2}')
 XSOCK=/tmp/.X11-unix
 #XAUTH=/tmp/.docker.xauth
 #xauth nlist :0 | sed -e 's/^..../ffff/' | xauth -f $XAUTH nmerge -
+
+
+#XAUTH=/tmp/.docker.xauth
+#touch $XAUTH
+#xauth nlist $DISPLAY | sed -e 's/^..../ffff/' | xauth -f $XAUTH nmerge -
+
+# --volume $XAUTH:$XAUTH:rw \
+# -e XAUTHORITY=$XAUTH \
 #-------------
 
 # Acquire parent directory as WORKDIR
@@ -29,17 +37,11 @@ NAME_ID=jschoi_cv_cuda_ros_kinetic
 #--------------------------------
 if [ $OS = "OSX" ]; then
   DOCKER=docker
-  XDISP=DISPLAY=$DISPLAY_IP:0  # for OSX
-  #WORKDIR=/Users/jschoi/work/Yolo
+  XDISP="DISPLAY=$DISPLAY_IP:0"  # for OSX
 else
   DOCKER=nvidia-docker  
   XDISP="DISPLAY"             # for Linux
-  #WORKDIR=/home/jschoi/work/Yolo
 fi
-
-
-#    --env "DISPLAY" \
-#    --env DISPLAY=$DISPLAY_IP:0 \
 #--------------------------------
 
 xhost + $DISPLAY_IP
@@ -53,7 +55,9 @@ $DOCKER run -it --rm \
     --name $NAME_ID \
     -p 22345:11345 \
     $IMAGE_ID \
-    /bin/bash
+    $COMMAND
+
+#    --privileged \
 #export containerId=$(docker ps -l -q)
 
 #xhost +local:`docker inspect --format='{{ .Config.Hostname }}' $containerId`
